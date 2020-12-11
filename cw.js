@@ -130,7 +130,7 @@ function prodChoice() {
   //checking to see if the user if happy with their product choice. if they are the item is dispensed and the item price is
   //taken away from their avaliable balance
   //if not they go back to the product choice screen
-  if (readlineSync.keyInYN("Your chosen product is: " + "\x1b[32m" + userItem + "\x1b[0m" + ", Is this correct? " + "\n")) {
+  if (readlineSync.keyInYN("\n" + "Your chosen product is: " + "\x1b[32m" + userItem + "\x1b[0m" + ", Is this correct? " + "\n")) {
     if (userChoice == "1") {
       userBal = userBal - coke.price;
       return cokeProd()
@@ -169,6 +169,14 @@ function prodChoice() {
   }
 }
 
+
+//called at the begining of the vending machine to ask a user to insert their desired amount of money
+function insertMoney() {
+  userBal = readlineSync.question("\x1b[32m" + "How much money would you like to insert? £" + "\x1b[0m");
+  console.log(" ");
+  console.log("Your balance is: " + "\x1b[32m" + "£" + userBal + "\x1b[0m" + "\n");
+}
+
 //recursive function checks to see if the user has enough credit to purchase their chosen item
 //if not, they are prompted to add more money to their balance
 function balanceCheck() {
@@ -177,13 +185,6 @@ function balanceCheck() {
     addMoney()
     balanceCheck()
   }
-}
-
-//called at the begining of the vending machine to ask a user to insert their desired amount of money
-function insertMoney() {
-  userBal = readlineSync.question("How much money would you like to insert? £");
-  console.log(" ");
-  console.log("Your balance is: " + "\x1b[32m" + "£" + userBal + "\x1b[0m" + "\n");
 }
 
 //function for adding more money if the userBal < itemChoice. if the user doesnt want to add any more
@@ -253,7 +254,7 @@ function userInterface() {
   console.log("|######################################################|");
   console.log("|######################################################|");
   console.log("|######################################################|");
-  console.log("|------------------------------------------------------|");
+  console.log("|______________________________________________________|" + "\n");
 }
 
 
@@ -285,7 +286,7 @@ function cokeProd() {
   console.log(" |________________________|");
   console.log(" (________________________)");
   console.log(" |________________________|");
-  console.log(" \\________________________/");
+  console.log(" \\________________________/" + "\n");
 }
 
 function fantaProd() {
@@ -314,7 +315,7 @@ function fantaProd() {
   console.log(" |  |_|  \\_\\_|\\___/  |");
   console.log(" (___________________)");
   console.log(" |___________________|");
-  console.log(" \\___________________/");
+  console.log(" \\___________________/" + "\n");
 }
 
 function waterProd() {
@@ -343,7 +344,7 @@ function waterProd() {
   console.log(" ||_|  |_|____|\\___/ |");
   console.log(" (___________________)");
   console.log(" |___________________|");
-  console.log(" \\___________________/");
+  console.log(" \\___________________/" + "\n");
 }
 
 function up7Prod() {
@@ -371,7 +372,7 @@ function up7Prod() {
   console.log(" |___________________|");
   console.log(" (___________________)");
   console.log(" |___________________|");
-  console.log(" \\___________________/");
+  console.log(" \\___________________/" + "\n");
 }
 
 function twixProd() {
@@ -385,21 +386,21 @@ function twixProd() {
   console.log("   / /           | |      \\  /\\  /   _| |_ / . \\         //");
   console.log("  / /            |_|       \\/  \\/   |_____/_/ \\_\\       //");
   console.log(" / /                                                   //");
-  console.log(" \\/___________________________________________________//");
+  console.log(" \\/___________________________________________________//" + "\n");
 }
 
 function bournvilleProd() {
-  console.log("          ______________________________________________________");
-  console.log("         / _____________________________________________________//");
-  console.log("        / /                                                    //");
-  console.log("       / /                                                     //");
-  console.log("      / /___  ___  _   _ ___ _  ___   _____ _    _    ___     //");
-  console.log("     / /| _ )/ _ \\| | | | _ \\ \\| \\ \\ / /_ _| |  | |  | __|  //");
-  console.log("    / / | _ \\ (_) | |_| |   / .` |\\ V / | || |__| |__| _|  //");
-  console.log("   / /  |___/\\___/ \\___/|_|_\\_|\\_| \\_/ |___|____|____|___|//");
-  console.log("  / /                                                     //");
-  console.log(" / /                                                     //");
-  console.log(" \\/____________________________________________________//");
+  console.log("          _________________________________________________________");
+  console.log("         / _______________________________________________________//");
+  console.log("        / /                                                      //");
+  console.log("       / /                                                      //");
+  console.log("      / / ___  ___  _   _ ___ _  ___   _____ _    _    ___     //");
+  console.log("     / / | _ )/ _ \\| | | | _ \\ \\| \\ \\ / /_ _| |  | |  | __|   //");
+  console.log("    / /  | _ \\ (_) | |_| |   / .` |\\ V / | || |__| |__| _|   //");
+  console.log("   / /   |___/\\___/ \\___/|_|_\\_|\\_| \\_/ |___|____|____|___| //");
+  console.log("  / /                                                      //");
+  console.log(" / /                                                      //");
+  console.log(" \\/______________________________________________________//" + "\n");
 }
 
 function twirlProd() {
@@ -413,7 +414,7 @@ function twirlProd() {
   console.log("   / /          | |     \\  /\\  /   _| |_| | \\ \\| |____    //");
   console.log("  / /           |_|      \\/  \\/   |_____|_|  \\_\\______|  //");
   console.log(" / /                                                    //");
-  console.log(" \\/___________________________________________________//");
+  console.log(" \\/___________________________________________________//" + "\n");
 }
 
 function flakeProd() {
@@ -427,7 +428,7 @@ function flakeProd() {
   console.log("   / /         | |    | |____ / ____ \\| . \\| |____        //");
   console.log("  / /          |_|    |______/_/    \\_\\_|\\_\\______|      //");
   console.log(" / /                                                    //");
-  console.log(" \\/___________________________________________________//");
+  console.log(" \\/___________________________________________________//" + "\n");
 }
 
 
