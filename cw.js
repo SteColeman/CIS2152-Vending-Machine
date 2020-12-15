@@ -19,19 +19,19 @@ rio.name = "Rio";
 rio.price = 0.85;
 rio.prodNumber = 2;
 
-var up7 = new Item();
-up7.name = "7UP";
-up7.price = 0.85;
-up7.prodNumber = 4;
-
 var water = new Item();
 water.name = "Water";
 water.price = 0.55;
 water.prodNumber = 3;
 
+var up7 = new Item();
+up7.name = "7UP";
+up7.price = 0.85;
+up7.prodNumber = 4;
+
 var bournville = new Item();
 bournville.name = "Bourneville";
-bournville.price = 1.00;
+bournville.price = 1.20;
 bournville.prodNumber = 5;
 
 var twirl = new Item();
@@ -41,12 +41,12 @@ twirl.prodNumber = 6;
 
 var twix = new Item();
 twix.name = "Twix";
-twix.price = 0.85;
+twix.price = 0.95;
 twix.prodNumber = 7;
 
 var flake = new Item();
 flake.name = "Flake";
-flake.price = 0.85;
+flake.price = 0.95;
 flake.prodNumber = 8;
 
 var userChoice; //global variable for the users current number choice
@@ -62,7 +62,7 @@ function funcOrder() {
   insertMoney()
   prodChoice()
   remainingBal()
-  question()
+  anotherPurchase()
 }
 
 //funcOrder1() is only called when a customer wants to purchase another item after the first purchase.
@@ -71,7 +71,7 @@ function funcOrder1() {
   userInterface()
   prodChoice()
   remainingBal()
-  question()
+  anotherPurchase()
 }
 
 //prodChoice() is the function that contains the majority of the vending machines working. This asks the customer
@@ -79,7 +79,6 @@ function funcOrder1() {
 //credit for the transaction or removes the price of the selected item off the users balance
 //if there isnt enough money for the transaction then the addMoney() function is called
 //once the addMoney() function is completed, the price ofthe selected item comes off the users balance
-
 function prodChoice() {
   userChoice = readlineSync.question("What product would you like to choose? Key in the product number: ");
   if (userChoice == 1) {
@@ -173,8 +172,9 @@ function prodChoice() {
 //called at the begining of the vending machine to ask a user to insert their desired amount of money
 function insertMoney() {
   userBal = readlineSync.question("\x1b[32m" + "How much money would you like to insert? £" + "\x1b[0m");
+  userBal = parseFloat(userBal);
   console.log(" ");
-  console.log("Your balance is: " + "\x1b[32m" + "£" + userBal + "\x1b[0m" + "\n");
+  console.log("Your balance is: " + "\x1b[32m" + "£" + userBal.toFixed(2) + "\x1b[0m" + "\n");
 }
 
 //recursive function checks to see if the user has enough credit to purchase their chosen item
@@ -208,7 +208,7 @@ function remainingBal() {
 
 //asks the user if they would like to make another purchase after they have purchased
 //and recieved their product
-function question() {
+function anotherPurchase() {
   if (readlineSync.keyInYN("Would you like to make another purchase?" + "\n")) {
     funcOrder1()
   } else {
@@ -217,7 +217,7 @@ function question() {
 }
 
 function returnCredit() {
-  console.log("Thanks for choosing EHU Vending Machine, You have been refunded: " +"\x1b[32m" +"£" +userBal.toFixed(2) + "\n");
+  console.log("\n" + "Thanks for choosing EHU Vending Machine, You have been refunded: " +"\x1b[32m" +"£" +userBal.toFixed(2) + "\n");
   userBal = 0.00;
 }
 
@@ -236,7 +236,7 @@ function userInterface() {
   console.log("|                                       ###| INSERT |##|");
   console.log("|    (" + up7.prodNumber +")    " + "      (" + bournville.prodNumber + ")" + "          "  + "(" + twirl.prodNumber + ")" + "      ###|  MONEY |##|");
   console.log("|    " + up7.name + "       " + bournville.name + "    " +  twirl.name + "     ###|   *-*  |##|");
-  console.log("|   £" + up7.price + "         £" + bournville.price + "          £" + twirl.price + "     ###|   | |  |##|");
+  console.log("|   £" + up7.price + "         £" + bournville.price + "        £" + twirl.price + "     ###|   | |  |##|");
   console.log("|                                       ###|   *-*  |##|");
   console.log("|    (" + twix.prodNumber +")    " + "      (" + flake.prodNumber + ")" + "          "  + "(9)" + "      ###*--------*##|");
   console.log("|   " + twix.name + "         " + flake.name + "        " + "REFUND" + "    ###*-------*###|");
@@ -274,15 +274,15 @@ function cokeProd() {
   console.log(" (________________________)");
   console.log("  )______________________(");
   console.log(" (________________________)");
-  console.log(" |   ___ ___   ___   _    |");
-  console.log(" |  / __/ _ \\ / __| /_\\   |");
-  console.log(" | | (_| (_) | (__ / _ \\  |");
-  console.log(" |  \\___\\___/ \\___/_/ \\_\\ |");
+  console.log(" |\u001b[31;1m   ___ ___   ___   _\u001b[0m    |");
+  console.log(" |\u001b[31;1m  / __/ _ \\ / __| /_\\\u001b[0m   |");
+  console.log(" |\u001b[31;1m | (_| (_) | (__ / _ \\\u001b[0m  |");
+  console.log(" |\u001b[31;1m  \\___\\___/ \\___/_/ \\_\\\u001b[0m |");
   console.log(" |                        |");
-  console.log(" |   ___ ___  _      _    |");
-  console.log(" |  / __/ _ \\| |    /_\\   |");
-  console.log(" | | (_| (_) | |__ / _ \\  |");
-  console.log(" |  \\___\\___/|____/_/ \\_\\ |");
+  console.log(" |\u001b[31;1m   ___ ___  _      _ \u001b[0m   |");
+  console.log(" |\u001b[31;1m  / __/ _ \\| |    /_\\\u001b[0m   |");
+  console.log(" |\u001b[31;1m | (_| (_) | |__ / _ \\\u001b[0m  |");
+  console.log(" |\u001b[31;1m  \\___\\___/|____/_/ \\_\\\u001b[0m |");
   console.log(" |________________________|");
   console.log(" (________________________)");
   console.log(" |________________________|");
@@ -307,12 +307,12 @@ function fantaProd() {
   console.log(" |___________________|");
   console.log(" )___________________(");
   console.log(" |___________________|");
-  console.log(" |   _____  _        |"); 
-  console.log(" |  |  __ \\(_)       |");
-  console.log(" |  | |__) |_  ___   |");
-  console.log(" |  |  _  /| |/ _ \\  |");
-  console.log(" |  | | \\ \\| | (_) | |");
-  console.log(" |  |_|  \\_\\_|\\___/  |");
+  console.log(" |\u001b[35;1m   _____  _\u001b[0m        |"); 
+  console.log(" |\u001b[35;1m  |  __ \\(_)\u001b[0m       |");
+  console.log(" |\u001b[35;1m  | |__) |_  ___\u001b[0m   |");
+  console.log(" |\u001b[35;1m  |  _  /| |/ _ \\\u001b[0m  |");
+  console.log(" |\u001b[35;1m  | | \\ \\| | (_) |\u001b[0m |");
+  console.log(" |\u001b[35;1m  |_|  \\_\\_|\\___/\u001b[0m  |");
   console.log(" (___________________)");
   console.log(" |___________________|");
   console.log(" \\___________________/" + "\n");
@@ -336,12 +336,12 @@ function waterProd() {
   console.log(" |___________________|");
   console.log(" )___________________(");
   console.log(" |___________________|");
-  console.log(" | _    _ ___   ___  |");  
-  console.log(" || |  | |__ \\ / _ \\ |");
-  console.log(" || |__| |  ) | | | ||");
-  console.log(" ||  __  | / /| | | ||");
-  console.log(" || |  | |/ /_| |_| ||");
-  console.log(" ||_|  |_|____|\\___/ |");
+  console.log(" |\u001b[34;1m _    _ ___   ___\u001b[0m  |");  
+  console.log(" |\u001b[34;1m| |  | |__ \\ / _ \\\u001b[0m |");
+  console.log(" |\u001b[34;1m| |__| |  ) | | | |\u001b[0m|");
+  console.log(" |\u001b[34;1m|  __  | / /| | | |\u001b[0m|");
+  console.log(" |\u001b[34;1m| |  | |/ /_| |_| |\u001b[0m|");
+  console.log(" |\u001b[34;1m|_|  |_|____|\\___/\u001b[0m |");
   console.log(" (___________________)");
   console.log(" |___________________|");
   console.log(" \\___________________/" + "\n");
@@ -365,28 +365,14 @@ function up7Prod() {
   console.log(" |___________________|");
   console.log(" )___________________(");
   console.log(" |___________________|");
-  console.log(" |  ____  _   _ ___  |");
-  console.log(" | |__  || | | | _ \\ |");
-  console.log(" |   / / | |_| |  _/ |");
-  console.log(" |  /_/   \\___/|_|   |");
+  console.log(" |  \x1b[32m____  \u001b[31;1m_   _ ___\u001b[0m  |");
+  console.log(" | \x1b[32m|__  |\u001b[31;1m| | | | _ \\\u001b[0m |");
+  console.log(" |   \x1b[32m/ / \u001b[31;1m| |_| |  _/\u001b[0m |");
+  console.log(" |  \x1b[32m/_/   \u001b[31;1m\\___/|_|\u001b[0m   |");
   console.log(" |___________________|");
   console.log(" (___________________)");
   console.log(" |___________________|");
   console.log(" \\___________________/" + "\n");
-}
-
-function twixProd() {
-  console.log("          _____________________________________________________");
-  console.log("         / ____________________________________________________//");
-  console.log("        / /                                                   //");
-  console.log("       / /    ___________          _________   __            //");
-  console.log("      / /     |__   __|\\ \\        / /_   _\\ \\ / /           //");
-  console.log("     / /         | |    \\ \\  /\\  / /  | |  \\ V /           //");
-  console.log("    / /          | |     \\ \\/  \\/ /   | |   > <           //");
-  console.log("   / /           | |      \\  /\\  /   _| |_ / . \\         //");
-  console.log("  / /            |_|       \\/  \\/   |_____/_/ \\_\\       //");
-  console.log(" / /                                                   //");
-  console.log(" \\/___________________________________________________//" + "\n");
 }
 
 function bournvilleProd() {
@@ -394,46 +380,60 @@ function bournvilleProd() {
   console.log("         / _______________________________________________________//");
   console.log("        / /                                                      //");
   console.log("       / /                                                      //");
-  console.log("      / / ___  ___  _   _ ___ _  ___   _____ _    _    ___     //");
-  console.log("     / / | _ )/ _ \\| | | | _ \\ \\| \\ \\ / /_ _| |  | |  | __|   //");
-  console.log("    / /  | _ \\ (_) | |_| |   / .` |\\ V / | || |__| |__| _|   //");
-  console.log("   / /   |___/\\___/ \\___/|_|_\\_|\\_| \\_/ |___|____|____|___| //");
+  console.log("      / / \u001b[31;1m___  ___  _   _ ___ _  ___   _____ _    _    ___\u001b[0m     //");
+  console.log("     / / \u001b[31;1m| _ )/ _ \\| | | | _ \\ \\| \\ \\ / /_ _| |  | |  | __|\u001b[0m   //");
+  console.log("    / /  \u001b[31;1m| _ \\ (_) | |_| |   / .` |\\ V / | || |__| |__| _|\u001b[0m   //");
+  console.log("   / /   \u001b[31;1m|___/\\___/ \\___/|_|_\\_|\\_| \\_/ |___|____|____|___|\u001b[0m //");
   console.log("  / /                                                      //");
   console.log(" / /                                                      //");
   console.log(" \\/______________________________________________________//" + "\n");
 }
 
 function twirlProd() {
-  console.log("          _______________________________________________________");
+  console.log("\u001b[35;1m          ________________________________________________________");
   console.log("         / _____________________________________________________//");
   console.log("        / /                                                    //");
-  console.log("       / /    _________          _______ _____  _             //");
-  console.log("      / /    |__   __\\ \\        / /_   _|  __ \\| |           //");
-  console.log("     / /        | |   \\ \\  /\\  / /  | | | |__) | |          //");
-  console.log("    / /         | |    \\ \\/  \\/ /   | | |  _  /| |         //");
-  console.log("   / /          | |     \\  /\\  /   _| |_| | \\ \\| |____    //");
-  console.log("  / /           |_|      \\/  \\/   |_____|_|  \\_\\______|  //");
+  console.log("       / /\u001b[0m \u001b[33;1m   _________          _______ _____  _             \u001b[35;1m//");
+  console.log("\u001b[35;1m      / /\u001b[33;1m    |__   __\\ \\        / /_   _|  __ \\| |\u001b[35;1m           //");
+  console.log("\u001b[35;1m     / /\u001b[33;1m        | |   \\ \\  /\\  / /  | | | |__) | |\u001b[35;1m          //");
+  console.log("\u001b[35;1m    / /\u001b[33;1m         | |    \\ \\/  \\/ /   | | |  _  /| |\u001b[35;1m         //");
+  console.log("\u001b[35;1m   / /\u001b[33;1m          | |     \\  /\\  /   _| |_| | \\ \\| |____\u001b[35;1m    //");
+  console.log("\u001b[35;1m  / /\u001b[33;1m           |_|      \\/  \\/   |_____|_|  \\_\\______|\u001b[35;1m  //");
   console.log(" / /                                                    //");
-  console.log(" \\/___________________________________________________//" + "\n");
+  console.log(" \\/____________________________________________________//\u001b[0m" + "\n");
+}
+
+function twixProd() {
+  console.log("\u001b[33;1m          _____________________________________________________");
+  console.log("         / ____________________________________________________//");
+  console.log("        / /                                                   //");
+  console.log("       / /\u001b[31;1m    ___________          _________   __ \u001b[33;1m           //");
+  console.log("      / /\u001b[31;1m     |__   __|\\ \\        / /_   _\\ \\ / /\u001b[33;1m           //");
+  console.log("     / /\u001b[31;1m         | |    \\ \\  /\\  / /  | |  \\ V /\u001b[33;1m           //");
+  console.log("    / /\u001b[31;1m          | |     \\ \\/  \\/ /   | |   > <\u001b[33;1m           //");
+  console.log("   / /\u001b[31;1m           | |      \\  /\\  /   _| |_ / . \\\u001b[33;1m         //");
+  console.log("  / /\u001b[31;1m            |_|       \\/  \\/   |_____/_/ \\_\\\u001b[33;1m       //");
+  console.log(" / /                                                   //");
+  console.log(" \\/___________________________________________________//\u001b[0m" + "\n");
 }
 
 function flakeProd() {
-  console.log("          _______________________________________________________");
-  console.log("         / _____________________________________________________//");
-  console.log("        / /                                                    //");
-  console.log("       / /      ______ _               _  ________            //");
-  console.log("      / /      |  ____| |        /\\   | |/ /  ____|          //");
-  console.log("     / /       | |__  | |       /  \\  | ' /| |__            //");
-  console.log("    / /        |  __| | |      / /\\ \\ |  < |  __|          //");
-  console.log("   / /         | |    | |____ / ____ \\| . \\| |____        //");
-  console.log("  / /          |_|    |______/_/    \\_\\_|\\_\\______|      //");
-  console.log(" / /                                                    //");
-  console.log(" \\/___________________________________________________//" + "\n");
+  console.log(" \u001b[33;1m        _______________________________________________________");
+  console.log("        / _____________________________________________________//");
+  console.log("       / /                                                    //");
+  console.log("\u001b[33;1m      / /\u001b[0m\u001b[31;1m      ______ _               _  ________     \u001b[0m \u001b[33;1m      //");
+  console.log("     / /\u001b[0m \u001b[31;1m     |  ____| |        /\\   | |/ /  ____|   \u001b[0m \u001b[33;1m      //");
+  console.log("    / /\u001b[0m \u001b[31;1m      | |__  | |       /  \\  | ' /| |__      \u001b[0m \u001b[33;1m     //");
+  console.log("   / /\u001b[0m  \u001b[31;1m      |  __| | |      / /\\ \\ |  < |  __|    \u001b[0m \u001b[33;1m     //");
+  console.log("  / /\u001b[0m  \u001b[31;1m       | |    | |____ / ____ \\| . \\| |____   \u001b[0m \u001b[33;1m    //");
+  console.log(" / /\u001b[0m  \u001b[31;1m        |_|    |______/_/    \\_\\_|\\_\\______| \u001b[0m \u001b[33;1m    //");
+  console.log("/ /                                                    //");
+  console.log("\\/____________________________________________________// \u001b[0m" + "\n");
 }
 
 
 //drink bottles from https://ascii.co.uk/art/bottle
 //ascii text http://patorjk.com/software/taag/#p=display&h=2&v=2&f=Small&t=7%20UP%0A
-// text colour found https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
+// text colour found https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html
 
 //idea: add in a "woud you like to add more money to your balance y/n when calling func order1"
